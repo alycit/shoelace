@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_time: 2014-03-16 12:07:01
+  end_time: 2014-03-16 12:07:01
+  mentor_id: 1
+  mentee_id: 1
+
+two:
+  start_time: 2014-03-16 12:07:01
+  end_time: 2014-03-16 12:07:01
+  mentor_id: 1
+  mentee_id: 1
