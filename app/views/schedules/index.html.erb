@@ -10,7 +10,17 @@
         <tr>
           <td>Mentor Name</td>
         <% @times.each do |time| %>
-          <td><%= datetime_format(time) %></td>
+          <td class="new_appt"><%= datetime_format(time) %>
+            <div class="hidden">
+              <h3>Add Appointment</h3>
+              <%= form_for :appointment do |f| %>
+              <%= f.label "Start Time" %>
+              <%= f.datetime_field :start_time, :value => time, :disabled => true %>
+              <br><br>
+              <%= f.button "Cancel", :type => "button", :class =>"appt_close btn btn-success"  %>&nbsp;<%= f.submit "Submit", :class =>"btn btn-success"  %>
+              <% end %>
+            </div>
+          </td>
         <% end %>
         </tr>
       </thead>
