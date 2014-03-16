@@ -8,7 +8,13 @@
 </head>
 <body>
 
-<%= yield %>
+  <% if authenticated? %>
+    <%= link_to 'sign out', :signout %>
+  <% else %>
+    <%= link_to 'sign in', :signin %>
+  <% end %>
+
+  <%= yield %>
 
 </body>
 </html>
