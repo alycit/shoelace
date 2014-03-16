@@ -30,12 +30,16 @@ gem 'jbuilder', '~> 1.2'
 gem 'oauth2', '~>0.8.0'
 gem 'omniauth'
 gem 'omniauth-oauth2'
-gem 'omniauth-dbc', :git => 'https://github.com/Devbootcamp/omniauth-dbc.git'
+gem 'omniauth-dbc', :git => "https://#{ENV['DBC_GEM_USERNAME']}:#{ENV['DBC_GEM_PWD']}@github.com/Devbootcamp/omniauth-dbc.git"
 gem 'dbc-ruby'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
+end
+
+group :production do
+  gem 'rails_12factor'
 end
 
 # Use ActiveModel has_secure_password
