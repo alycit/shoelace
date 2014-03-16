@@ -1,7 +1,7 @@
 module SessionsHelper
 
   def authenticated?
-    session[:user_attributes]
+    session[:user_id]
   end
 
   def token_as_hash(token)

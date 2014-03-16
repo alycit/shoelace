@@ -11,11 +11,11 @@ class SessionsController < ApplicationController
   end
 
   def auth
-    session[:user_attributes] = request.env['omniauth.auth'].info
+    @user =  User.create_or_find_user_from_oauth(request.env['omniauth.auth'].info)
+    session[:user_id] = @user.id
     token = request.env['omniauth.auth'].credentials
     session[:oauth_token] = token_as_hash(token)
-
-    redirect_to root_path
+    redirect_to schedule_path
   end
 
 end
