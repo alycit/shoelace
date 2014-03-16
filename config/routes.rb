@@ -8,6 +8,7 @@ Shoelace::Application.routes.draw do
   get '/signin', :to => 'sessions#sign_in'
   get '/signout', :to => 'sessions#sign_out'
   get 'auth/:provider/callback', :to => 'sessions#auth'
+  get '/schedule', :to => 'schedules#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
