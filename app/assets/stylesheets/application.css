@@ -12,3 +12,25 @@
  *= require_self
  *= require_tree .
  */
+
+table{
+  width: 100%;
+  border: 1px solid black;
+}
+
+td {
+  padding: 4%;
+  border: 1px solid black;
+}
+
+.filled {
+  background:blue;
+}
+
+.available {
+  background:green;
+}
+
+.schedule_container {
+  margin: 0 5%;
+}

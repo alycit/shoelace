@@ -1,1 +1,38 @@
-Schedule!
+<div class="schedule_container">
+    <h1>Schedule</h1>
+
+    <% #create a loop that makes columns for each of the times in the slots. %>
+    <% #each table row will correspond to a mentor %>
+    <% #appointments that do not have a mentee id will appear as blue %>
+    <% #appointments that do have a mentee id will appear as green %>
+    <table>
+      <thead>
+        <tr>
+          <td>Mentor Name</td>
+        <% @times.each do |time| %>
+          <td><%= datetime_format(time) %></td>
+        <% end %>
+        </tr>
+      </thead>
+      <tbody>
+      <% @mentors.each do |mentor| %>
+        <tr>
+          <td><%= mentor.name %></td>
+          <% @times.each do |time| %>
+            <% appointment = mentor.appointments.where(:start_time => time-5.hours).first %>
+            <% if appointment %>
+              <% if appointment.mentee_id %>
+              <td class="filled">
+              <% else %>
+              <td class="available">
+              <% end %>
+            <% else %>
+            <td>
+            <% end %>
+          </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

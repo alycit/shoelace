@@ -11,7 +11,6 @@ mandrew = User.create(name: "Andrew", email: "andrew@andrew.com", cohort_id: 1)
 scarah = User.create(name: "Sarah", email: "sarah@sarah.com", cohort_id: 2)
 marco_polo = User.create(name: "Marco", email: "marco@marco.com", cohort_id: 2)
 
-
-appointment_1 = Appointment.create(start_time: Time.now, end_time: Time.now, mentor_id: 1, mentee_id: 3)
-appointment_2 = Appointment.create(start_time: Time.now, end_time: Time.now, mentor_id: 2, mentee_id: 4)
-appointment_3 = Appointment.create(start_time: Time.now, end_time: Time.now, mentor_id: 2, mentee_id: 1)
+appointment_1 = Appointment.create(start_time: DateTime.new(2014, 03, 22, 10, 0), mentor_id: 1, mentee_id: 3)
+appointment_2 = Appointment.create(start_time: DateTime.new(2014, 03, 22, 11, 30), mentor_id: 2, mentee_id: 4)
+appointment_3 = Appointment.create(start_time: DateTime.new(2014, 03, 22, 17, 30), mentor_id: 2, mentee_id: nil)
