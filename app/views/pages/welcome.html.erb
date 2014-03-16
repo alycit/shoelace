@@ -1,0 +1,7 @@
+<h1>Welcome</h1>
+
+<p>You are on the landing page.</p>
+
+<% if session[:user_attributes] %>
+  <p>You are logged in as <%= session[:user_attributes].name %> (<%= session[:user_attributes].id %>).</p>
+<% end %>

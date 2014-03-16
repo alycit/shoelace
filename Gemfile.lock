@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/Devbootcamp/omniauth-dbc.git
+  revision: 75899feab1e6cdfb3197f57e5139689f1b5b2050
+  specs:
+    omniauth-dbc (1.0.0)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -35,9 +43,15 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.0)
+    dbc-ruby (1.0.4)
+      rest-client
     erubis (2.7.0)
     execjs (2.0.2)
+    faraday (0.9.0)
+      multipart-post (>= 1.2, < 3)
+    hashie (2.0.5)
     hike (1.2.3)
+    httpauth (0.2.1)
     i18n (0.6.9)
     jbuilder (1.5.3)
       activesupport (>= 3.0.0)
@@ -46,12 +60,27 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.1)
+    jwt (0.1.11)
+      multi_json (>= 1.5)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
     minitest (4.7.5)
     multi_json (1.9.0)
+    multipart-post (2.0.0)
+    oauth2 (0.8.1)
+      faraday (~> 0.8)
+      httpauth (~> 0.1)
+      jwt (~> 0.1.4)
+      multi_json (~> 1.0)
+      rack (~> 1.2)
+    omniauth (1.2.1)
+      hashie (>= 1.2, < 3)
+      rack (~> 1.0)
+    omniauth-oauth2 (1.1.1)
+      oauth2 (~> 0.8.0)
+      omniauth (~> 1.0)
     pg (0.17.1)
     polyglot (0.3.4)
     rack (1.5.2)
@@ -73,6 +102,8 @@ GEM
     rake (10.1.1)
     rdoc (4.1.1)
       json (~> 1.4)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     sass (3.2.15)
     sass-rails (4.0.2)
       railties (>= 4.0.0, < 5.0)
@@ -110,8 +141,13 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 4.0.0)
+  dbc-ruby
   jbuilder (~> 1.2)
   jquery-rails
+  oauth2 (~> 0.8.0)
+  omniauth
+  omniauth-dbc!
+  omniauth-oauth2
   pg
   rails (= 4.0.4)
   sass-rails (~> 4.0.2)
