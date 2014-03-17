@@ -12,3 +12,44 @@
  *= require_self
  *= require_tree .
  */
+
+table{
+  width: 100%;
+  border: 1px solid black;
+}
+
+td {
+  padding: 4%;
+  height: 50px;
+  border: 1px solid black;
+  text-align: center;
+}
+
+.filled {
+  background:blue;
+}
+
+.available {
+  background:green;
+}
+
+.schedule_container {
+  margin: 0 5%;
+}
+
+.active{
+  width: 400px;
+  height: 150px;
+  background: #ccc;
+  position: fixed;
+  top: 15%;
+  left:45%;
+  z-index: 100;
+  border: 1px solid black;
+  border-radius: 10px;
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
+

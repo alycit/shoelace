@@ -10,6 +10,8 @@ Shoelace::Application.routes.draw do
   get 'auth/:provider/callback', :to => 'sessions#auth'
   get '/schedule', :to => 'schedules#index'
 
+  resources :appointments
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
