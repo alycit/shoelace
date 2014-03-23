@@ -1,10 +1,12 @@
-table{
+@import "bootstrap";
+
+table {
   width: 100%;
   border: 1px solid black;
 }
 
 td {
-  padding: 4%;
+  padding: 5px;
   height: 50px;
   border: 1px solid black;
   text-align: center;
