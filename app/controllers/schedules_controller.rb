@@ -8,9 +8,9 @@ class SchedulesController < ApplicationController
         @mentors << appt.mentor
       end
     end
-    saturday = Appointment.saturday
+    @saturday = Appointment.saturday
     @times = []
-    time = Time.new(saturday.year, saturday.month, saturday.day, 9, 0, 0)
+    time = Time.new(@saturday.year, @saturday.month, @saturday.day, 9, 0, 0)
     24.times do
       @times << time
       time += 30.minutes
