@@ -2,8 +2,8 @@ class Appointment < ActiveRecord::Base
   belongs_to :mentor, class_name: "User"
   belongs_to :mentee, class_name: "User"
 
-  def self.get_saturday_appointments
-    Appointment.where(:start_time => saturday.beginning_of_day..saturday.end_of_day)
+  def self.get_saturday_appointments_by_timeslot(time)
+    Appointment.where(:start_time => time-5.hours)
   end
 
   def self.saturday

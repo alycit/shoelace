@@ -1,13 +1,18 @@
 @import "bootstrap";
 
+body {
+  margin-bottom: 50px;
+}
+
+
 table {
-  width: 100%;
   border: 1px solid black;
+  margin: 0 auto;
 }
 
 td {
   padding: 5px;
-  height: 50px;
+  width: 100px;
   border: 1px solid black;
   text-align: center;
 }
@@ -24,13 +29,13 @@ td {
   margin: 0 5%;
 }
 
-.active{
+.active {
   width: 400px;
   height: 150px;
   background: #ccc;
   position: fixed;
   top: 15%;
-  left:45%;
+  left: 45%;
   z-index: 100;
   border: 1px solid black;
   border-radius: 10px;
