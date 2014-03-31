@@ -20,28 +20,30 @@
 
 <div class="schedule_container">
   <h1>Schedule for <%= @saturday.strftime("%m/%d/%Y")  %></h1>
-  <table>
+  <div class="schedule_body">
     <% @schedule.each do |row| %>
-    <tr>
+
+    <% if row.all? { |slot| slot.is_a? String } %>
+      <div class="schedule_header">
+    <% else %>
+      <div class="schedule_row">
+    <% end %>
+
       <% row.each do |slot| %>
-        <% if slot.is_a? User %>
-          <td><%= slot.name %></td>
+        <% if slot.is_a? Time %>
+          <div class="slot new_appt"><%= datetime_format(slot) %></div>
         <% elsif slot.is_a? Appointment %>
           <% if slot.mentee_id %>
-          <td class="filled">
-          <% elsif slot.mentor_id %>
-          <td class="available">
+          <div class="slot filled">
           <% else %>
-          <td>
+          <div class="slot available">
           <% end %>
-          </td>
-        <% elsif slot.is_a? Time %>
-          <td class="new_appt"><%= datetime_format(slot) %></td>
+          </div>
         <% else %>
-          <td><%= slot %></td>
+          <div class="slot"><%= slot %></div>
         <% end %>
       <% end %>
-    </tr>
+    </div>
     <% end %>
-  </table>
+  </div>
 </div>

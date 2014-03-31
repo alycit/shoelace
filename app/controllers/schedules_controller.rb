@@ -5,7 +5,7 @@ class SchedulesController < ApplicationController
     @schedule = []
 
     time = Time.new(@saturday.year, @saturday.month, @saturday.day, 9, 0, 0)
-    header_row = ["Time"].concat(User.get_mentors_with_saturday_appointments)
+    header_row = ["Time"].concat(User.get_mentor_names_with_saturday_appointments)
 
     @schedule << header_row
 
@@ -13,14 +13,9 @@ class SchedulesController < ApplicationController
       row = []
       appointments = Appointment.get_saturday_appointments_by_timeslot(time)
 
-      header_row.each do |cell|
-        if cell.is_a? User
-          appointment = appointments.find { |appointment| appointment.mentor.name == cell.name }
-          if appointment
-            row << appointment
-          else
-            row << nil
-          end
+      header_row.each_with_index do |cell, index|
+        unless index == 0
+          row << appointments.find { |appointment| appointment.mentor.name == cell }
         else
           row << time
         end
