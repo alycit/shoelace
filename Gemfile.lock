@@ -1,5 +1,5 @@
 GIT
-  remote: https://:@github.com/Devbootcamp/omniauth-dbc.git
+  remote: https://github.com/Devbootcamp/omniauth-dbc.git
   revision: 75899feab1e6cdfb3197f57e5139689f1b5b2050
   specs:
     omniauth-dbc (1.0.0)
