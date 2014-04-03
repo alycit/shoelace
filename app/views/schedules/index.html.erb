@@ -1,24 +1,24 @@
-<!-- Modal -->
-<div class="modal fade" id="new_appointment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Create Mentoring Availability</h4>
-      </div>
-      <div class="modal-body">
-        <p>Click 'Create' to make an availability for you to mentor someone at <span id="start_time"></span> on <%= @saturday.strftime("%m/%d/%Y")%></p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Create</button>
+<div class="container">
+  <!-- Modal -->
+  <div class="modal fade" id="new_appointment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">Create Mentoring Availability</h4>
+        </div>
+        <div class="modal-body">
+          <p>Click 'Create' to make an availability for you to mentor someone at <span id="start_time"></span> on <%= @saturday.strftime("%m/%d/%Y")%></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Create</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<!-- end Modal -->
+  <!-- end Modal -->
 
-<div class="schedule_container">
   <h1>Schedule for <%= @saturday.strftime("%m/%d/%Y")  %></h1>
   <div class="schedule_body">
     <% @schedule.each do |row| %>

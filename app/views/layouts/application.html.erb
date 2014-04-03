@@ -8,7 +8,7 @@
 </head>
 <body>
 
-  <div class="navbar navbar-inverse" role="navigation">
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -20,16 +20,18 @@
           <a class="navbar-brand" href="#">Shoelace</a>
         </div>
         <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
           <% unless authenticated? %>
             <%= button_to "Sign In", {:controller => "sessions", :action => "sign_in"}, {:method => :get, :form_class => "navbar-form navbar-right", :class => "btn btn-success" }%>
         <% else %>
             <%= button_to "Sign Out", {:controller => "sessions", :action => "sign_out"}, {:method => :get, :form_class => "navbar-form navbar-right", :class => "btn btn-success" }%>
         <% end %>
+            </li>
+          </ul>
         </div><!--/.navbar-collapse -->
       </div>
     </div>
-
   <%= yield %>
-
 </body>
 </html>
