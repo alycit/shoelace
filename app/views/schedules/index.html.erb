@@ -31,7 +31,7 @@
 
       <% row.each do |slot| %>
         <% if slot.is_a? Time %>
-          <div class="slot new_appt"><%= datetime_format(slot) %></div>
+          <div class="slot new_mentor_availibility"><%= datetime_format(slot) %></div>
         <% elsif slot.is_a? Appointment %>
           <% if slot.mentee_id %>
           <div class="slot filled">
@@ -40,7 +40,7 @@
           <% end %>
           </div>
         <% else %>
-          <div class="slot"><%= slot %></div>
+          <div class="slot existing_mentor_availability"><%= slot %></div>
         <% end %>
       <% end %>
     </div>

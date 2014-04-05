@@ -1039,9 +1039,14 @@ body {
       background-color: white;
     }
 
-    .new_appt {
+    .new_mentor_availibility {
       background-color: $brand-info;
       color: white;
+      cursor: pointer;
+    }
+
+    .existing_mentor_availability {
+      background-color: white;
       cursor: pointer;
     }
 
