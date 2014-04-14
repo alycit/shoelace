@@ -23,11 +23,11 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li>
-          <% unless authenticated? %>
+            <% unless authenticated? %>
             <%= button_to "Sign In", {:controller => "sessions", :action => "sign_in"}, {:method => :get, :form_class => "navbar-form navbar-right", :class => "btn btn-success" }%>
-        <% else %>
+            <% else %>
             <%= button_to "Sign Out", {:controller => "sessions", :action => "sign_out"}, {:method => :get, :form_class => "navbar-form navbar-right", :class => "btn btn-success" }%>
-        <% end %>
+            <% end %>
             </li>
           </ul>
         </div><!--/.navbar-collapse -->
