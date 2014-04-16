@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   end
 
   def self.get_mentor_names_with_saturday_appointments
-    users = User.joins(:appointments).where(appointments: {start_time: Appointment.saturday.beginning_of_day..Appointment.saturday.end_of_day }).uniq.order(:name)
+    users = User.joins(:appointments).where(appointments: {start_time: Appointment.coming_saturday.beginning_of_day..Appointment.coming_saturday.end_of_day }).uniq.order(:name)
     users.map { |user| user.name }
   end
 end

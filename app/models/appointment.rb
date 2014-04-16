@@ -6,7 +6,7 @@ class Appointment < ActiveRecord::Base
     Appointment.where(:start_time => time-5.hours)
   end
 
-  def self.saturday
+  def self.coming_saturday
     date = Time.now
     date.wday == 6 ? date : date + (6 - date.wday).days
   end
