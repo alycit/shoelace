@@ -3,4 +3,9 @@ $(document).ready(function(){
     $("#start_time").text($(this).text());
     $('#new_appointment').modal('show');
   });
+
+  $("#create_appt").on("click", function(){
+    $("input[name='start_time']").val($("#start_time").text());
+    $("form").submit();
+  });
 });

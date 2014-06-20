@@ -12,7 +12,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Create</button>
+          <button id="create_appt" type="button" class="btn btn-primary">Create</button>
         </div>
       </div>
     </div>
@@ -47,3 +47,8 @@
     <% end %>
   </div>
 </div>
+
+<form class="hidden" method="post" action="/appointments">
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+  <input type="text" name="start_time">
+</form>
