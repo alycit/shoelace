@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-  include SessionsHelper
 
   def sign_in
     redirect_to '/auth/dbc'

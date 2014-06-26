@@ -14,4 +14,10 @@ module SessionsHelper
       expires_at: token.expires_at }
   end
 
+  def check_session
+    unless authenticated?
+      redirect_to :root
+    end
+  end
+
 end

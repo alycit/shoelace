@@ -1,4 +1,5 @@
 class AppointmentsController < ApplicationController
+  before_filter :check_session
 
   def new
     @appointment = Appointment.new

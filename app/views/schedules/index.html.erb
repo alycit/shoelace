@@ -75,12 +75,11 @@
           <div class="slot new_mentor_availibility"><%= datetime_format(slot) %></div>
         <% elsif slot.is_a? Appointment %>
           <% if slot.mentee_id %>
-            <% if slot.mentee_id == session[:user_id] %>
             <div class="slot filled">
+            <% if slot.mentee_id == session[:user_id] %>
+
             <!-- if the slot is filled and has my mentee id , make it cancellable so that it can be available for someone else -->
             <a href="#" class="cancelAppointment" data-id="<%= slot.id %>"><%= icon('calendar-o') %></a>
-            <% else %>
-            <div class="slot filled no-pointer">
             <% end %>
           <% else %>
           <div class="slot available">
