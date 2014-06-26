@@ -1002,6 +1002,10 @@ body {
   margin-bottom: 50px;
 }
 
+h1 span {
+  margin-left: 15px;
+}
+
 .schedule_body {
 
   background-color: #ccc;
@@ -1042,6 +1046,7 @@ body {
     .new_mentor_availibility {
       background-color: $brand-info;
       color: white;
+      cursor: pointer;
     }
 
     .filled {
@@ -1060,6 +1065,76 @@ body {
 
     a {
       color: #333;
+    }
+  }
+}
+
+.popover {
+  max-width: 400px;
+  width: auto;
+}
+
+#help {
+  background-color: #ccc;
+  display: table;
+  border-collapse: separate;
+  border-spacing: 5px;
+  border-radius: 2px;
+
+  .slot {
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+    height: 25px;
+    border-radius: 2px;
+    padding:2px;
+    width: 25px;
+  }
+
+  .help_header {
+
+    display: table-row;
+
+    .slot {
+      background: $btn-default-bg;
+      color: white;
+    }
+  }
+
+  .help_row {
+
+    display: table-row;
+
+    .slot {
+      background-color: white;
+    }
+
+    .new_mentor_availibility {
+      background-color: $brand-info;
+      color: white;
+      font-size: .2em;
+    }
+
+    .filled {
+      background: $brand-primary;
+      color: #333;
+      text-align: center;
+      font-size: .3em;
+    }
+
+    .available {
+      background: $brand-success;
+      color: #333;
+      text-align: center;
+      font-size: .3em;
+    }
+
+    .description {
+      font-size: 14px;
+      width:400px;
+      color: #333;
+      padding:2px;
+      text-align: left;
     }
   }
 }

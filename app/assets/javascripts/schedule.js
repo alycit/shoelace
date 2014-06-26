@@ -45,4 +45,12 @@ $(document).ready(function(){
     $("#delete_appt_form").submit();
   });
 
+  $("#help_popover").popover({
+    html : true,
+    content: function() {
+      return $('#help_content').html();
+    },
+    title: "Legend",
+    placement: "bottom"
+  });
 });

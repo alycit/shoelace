@@ -1,66 +1,5 @@
 <div class="container">
-  <!-- Modal -->
-  <div class="modal fade" id="new_appointment" tabindex="-1" role="dialog" aria-labelledby="new_appt_label" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title" id="new_appt_label">Create Mentoring Availability</h4>
-        </div>
-        <div class="modal-body">
-          <p>Click 'Create' to make an availability for you to mentor someone at <span id="start_time"></span> on <%= @saturday.strftime("%m/%d/%Y")%></p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button id="create_appt" type="button" class="btn btn-primary">Create</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- end Modal -->
-
-  <!-- Modal -->
-  <div class="modal fade" id="edit_appointment" tabindex="-1" role="dialog" aria-labelledby="edit_appt_label" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title" id="edit_appt_label"></h4>
-        </div>
-        <div class="modal-body">
-          <p id="edit_text"></p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button id="edit_appt" type="button" class="btn btn-primary"></button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- end Modal -->
-
-  <!-- Modal -->
-  <div class="modal fade" id="delete_availability" tabindex="-1" role="dialog" aria-labelledby="delete_avail_label" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title" id="delete_avail_label">Delete Availability</h4>
-        </div>
-        <div class="modal-body">
-          <p>Click 'Delete' to remove this availability.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button id="delete_avail" type="button" class="btn btn-primary">Delete</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- end Modal -->
-
-
-  <h1>Schedule for <%= @saturday.strftime("%m/%d/%Y")  %></h1>
+  <h1>Schedule for <%= @saturday.strftime("%m/%d/%Y")  %><span id="help_popover"><%= icon('question-circle')%></span></h1>
   <div class="schedule_body">
     <% @schedule.each do |row| %>
 
@@ -77,22 +16,15 @@
           <% if slot.mentee_id %>
             <div class="slot filled">
             <% if slot.mentee_id == session[:user_id] %>
-
-            <!-- if the slot is filled and has my mentee id , make it cancellable so that it can be available for someone else -->
             <a href="#" class="cancelAppointment" data-id="<%= slot.id %>"><%= icon('calendar-o') %></a>
             <% end %>
           <% else %>
           <div class="slot available">
             <% if slot.mentor_id != session[:user_id] %>
-            <!-- if the slot is available and has someone else's mentor id make it bookable -->
             <a href="#" class="bookAppointment" data-id="<%= slot.id %>"><%= icon('calendar') %></a>
             <% end %>
           <% end %>
           <% if slot.mentor_id == session[:user_id] %>
-          <!--
-          if the slot filled and has my mentor id, then make it deleteable
-          if the slot available and has my mentor id, then make it deleteable
-          -->
           <a href="#" class="deleteAvailability" data-id="<%= slot.id %>"><%= icon('times') %></a>
           <% end %>
           </div>
@@ -104,6 +36,66 @@
     <% end %>
   </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="new_appointment" tabindex="-1" role="dialog" aria-labelledby="new_appt_label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="new_appt_label">Create Mentoring Availability</h4>
+      </div>
+      <div class="modal-body">
+        <p>Click 'Create' to make an availability for you to mentor someone at <span id="start_time"></span> on <%= @saturday.strftime("%m/%d/%Y")%></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button id="create_appt" type="button" class="btn btn-primary">Create</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end Modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="edit_appointment" tabindex="-1" role="dialog" aria-labelledby="edit_appt_label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="edit_appt_label"></h4>
+      </div>
+      <div class="modal-body">
+        <p id="edit_text"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button id="edit_appt" type="button" class="btn btn-primary"></button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end Modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="delete_availability" tabindex="-1" role="dialog" aria-labelledby="delete_avail_label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="delete_avail_label">Delete Availability</h4>
+      </div>
+      <div class="modal-body">
+        <p>Click 'Delete' to remove this availability.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button id="delete_avail" type="button" class="btn btn-primary">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end Modal -->
 
 <form id="delete_appt_form" class="hidden" method="post">
   <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
@@ -120,3 +112,37 @@
   <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
   <input type="text" name="start_time">
 </form>
+
+<div id="help_content" class="hidden">
+  <div id="help" class="help_body">
+    <div class="help_row">
+      <div class="slot new_mentor_availibility">9:00 AM</div>
+      <div class="slot description">Click this slot to create an availability to mentor someone for that timeslot.</div>
+    </div>
+    <div class="help_row">
+      <div class="slot filled"></div>
+      <div class="slot description">This is a slot that someone has made available for pairing but has been filled by a mentee that is not you.</div>
+    </div>
+     <div class="help_row">
+      <div class="slot filled"><%= icon('times') %></div>
+      <div class="slot description">This is slot where you have made yourself available for pairing and has already been filled.  Click to cancel the availability.</div>
+    </div>
+    <div class="help_row">
+      <div class="slot filled"><%= icon('calendar-o') %></div>
+      <div class="slot description">This is a slot that someone has made available for pairing and has been filled by you.  Click this to cancel the appointment.</div>
+    </div>
+    <div class="help_row">
+      <div class="slot available"><%= icon('calendar') %></div>
+      <div class="slot description">This is a slot that someone has made available for pairing. Click to book this pairing session.</div>
+    </div>
+    <div class="help_row">
+      <div class="slot available"><%= icon('times') %></div>
+      <div class="slot description">This is slot where you have made yourself available for pairing but has not been filled.  Click to cancel the availability.</div>
+    </div>
+<!--  Build this in later when profile pages are setup
+    <div class="help_header">
+      <div class="slot"></div>
+    </div>
+-->
+  </div>
+</div>
