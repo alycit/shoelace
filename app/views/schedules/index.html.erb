@@ -19,6 +19,7 @@
   </div>
   <!-- end Modal -->
 
+
   <h1>Schedule for <%= @saturday.strftime("%m/%d/%Y")  %></h1>
   <div class="schedule_body">
     <% @schedule.each do |row| %>
@@ -35,20 +36,34 @@
         <% elsif slot.is_a? Appointment %>
           <% if slot.mentee_id %>
           <div class="slot filled">
+            <% if slot.mentee_id == session[:user_id] %>
+            <%= icon('calendar-o') %>
+            <% end %>
           <% else %>
           <div class="slot available">
+            <% if slot.mentor_id != session[:user_id] %>
+            <%= icon('calendar') %>
+            <% end %>
+          <% end %>
+          <% if slot.mentor_id == session[:user_id] %>
+          <%= icon('times') %>
           <% end %>
           </div>
         <% else %>
-          <div class="slot existing_mentor_availability"><%= slot %></div>
+          <div class="slot"><%= slot %></div>
         <% end %>
       <% end %>
     </div>
     <% end %>
   </div>
 </div>
-
-<form class="hidden" method="post" action="/appointments">
+<!--
+  if the slot filled and has my mentor id, then make it deleteable
+  if the slot available and has my mentor id, then make it deleteable
+  if the slot is filled and has my mentee id , make it cancellable so that it can be available for someone else
+  if the slot is available and has someone else's mentor id make it bookable
+-->
+<form id="create_appt_form" class="hidden" method="post" action="/appointments">
   <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
   <input type="text" name="start_time">
 </form>

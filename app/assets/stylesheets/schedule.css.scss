@@ -1045,17 +1045,20 @@ body {
       cursor: pointer;
     }
 
-    .existing_mentor_availability {
-      background-color: white;
-      cursor: pointer;
-    }
-
     .filled {
       background: $brand-primary;
+      color: #333;
+      font-size: 2em;
+      text-align: center;
+      cursor: pointer;
     }
 
     .available {
       background: $brand-success;
+      color: #333;
+      font-size: 2em;
+      text-align: center;
+      cursor: pointer;
     }
   }
 }
