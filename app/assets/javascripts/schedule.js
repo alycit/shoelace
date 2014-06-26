@@ -1,4 +1,4 @@
-$(document).ready(function(){
+var ready = function(){
   $(".new_mentor_availibility").on("click", function(event) {
     $("#start_time").text($(this).text());
     $('#new_appointment').modal('show');
@@ -53,4 +53,7 @@ $(document).ready(function(){
     title: "Legend",
     placement: "bottom"
   });
-});
+}
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
