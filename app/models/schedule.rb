@@ -1,10 +1,10 @@
 class Schedule
-  def self.calendar_for(mentor_names)
-    header_row = ["Time"].concat(mentor_names)
+  def self.calendar_for(mentors)
+    header_row = ["Time"].concat(mentors)
 
     schedule = []
     schedule << header_row
-    
+
     saturday = Appointment.coming_saturday
     time = Time.new(saturday.year, saturday.month, saturday.day, 9, 0, 0)
 
@@ -14,7 +14,7 @@ class Schedule
 
       header_row.each_with_index do |cell, index|
         unless index == 0
-          row << appointments.find { |appointment| appointment.mentor.name == cell }
+          row << appointments.find { |appointment| appointment.mentor == cell }
         else
           row << time
         end

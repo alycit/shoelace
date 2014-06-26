@@ -3,39 +3,47 @@
   <div class="schedule_body">
     <% @schedule.each do |row| %>
 
-    <% if row.all? { |slot| slot.is_a? String } %>
-      <div class="schedule_header">
-    <% else %>
-      <div class="schedule_row">
-    <% end %>
-
-      <% row.each do |slot| %>
-        <% if slot.is_a? Time %>
-          <div class="slot new_mentor_availibility"><%= datetime_format(slot) %></div>
-        <% elsif slot.is_a? Appointment %>
-          <% if slot.mentee_id %>
-            <div class="slot filled">
-            <% if slot.mentee_id == session[:user_id] %>
-            <a href="#" class="cancelAppointment" data-id="<%= slot.id %>"><%= icon('calendar-o') %></a>
+      <% if row.all? { |slot| slot.is_a?(String) || slot.is_a?(User) } %>
+        <div class="schedule_header">
+          <% row.each do |slot| %>
+            <% if slot.is_a? String %>
+            <div class="slot"><%= slot %></div>
+            <% else %>
+            <div class="slot profile"><%= link_to slot.name, user_path(slot) %></div>
             <% end %>
-          <% else %>
-          <div class="slot available">
-            <% if slot.mentor_id != session[:user_id] %>
-            <a href="#" class="bookAppointment" data-id="<%= slot.id %>"><%= icon('calendar') %></a>
+            <!-- gonna need user objects in there to fix this to show profiles -->
+          <% end %>
+        </div>
+      <% else %>
+        <div class="schedule_row">
+          <% row.each do |slot| %>
+            <% if slot.is_a? Time %>
+              <div class="slot new_mentor_availibility"><%= datetime_format(slot) %></div>
+            <% elsif slot.is_a? Appointment %>
+              <% if slot.mentee_id %>
+                <div class="slot filled">
+                  <% if slot.mentee_id == session[:user_id] %>
+                    <a href="#" class="cancelAppointment" data-id="<%= slot.id %>"><%= icon('calendar-o') %></a>
+                  <% end %>
+              <% else %>
+                <div class="slot available">
+                <% if slot.mentor_id != session[:user_id] %>
+                  <a href="#" class="bookAppointment" data-id="<%= slot.id %>"><%= icon('calendar') %></a>
+                <% end %>
+              <% end %>
+              <% if slot.mentor_id == session[:user_id] %>
+                <a href="#" class="deleteAvailability" data-id="<%= slot.id %>"><%= icon('times') %></a>
+              <% end %>
+                </div>
+            <% else %>
+              <div class="slot"><%= slot %></div>
             <% end %>
           <% end %>
-          <% if slot.mentor_id == session[:user_id] %>
-          <a href="#" class="deleteAvailability" data-id="<%= slot.id %>"><%= icon('times') %></a>
-          <% end %>
-          </div>
-        <% else %>
-          <div class="slot"><%= slot %></div>
-        <% end %>
-      <% end %>
-    </div>
-    <% end %>
-  </div>
-</div>
+        </div><!-- end schedule row -->
+      <% end %><!-- end row if else -->
+    <% end %><!-- end schdule each-->
+  </div><!-- end schedule body -->
+</div><!-- end container -->
 
 <!-- Modal -->
 <div class="modal fade" id="new_appointment" tabindex="-1" role="dialog" aria-labelledby="new_appt_label" aria-hidden="true">

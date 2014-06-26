@@ -18,17 +18,16 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Shoelace</a>
+          <a class="navbar-brand" href="/">Shoelace</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li>
             <% unless authenticated? %>
-            <%= button_to "Sign In", {:controller => "sessions", :action => "sign_in"}, {:method => :get, :form_class => "navbar-form navbar-right", :class => "btn btn-success" }%>
+            <li><%= button_to "Sign In", {:controller => "sessions", :action => "sign_in"}, {:method => :get, :form_class => "navbar-form navbar-right", :class => "btn btn-success" }%></li>
             <% else %>
-            <%= button_to "Sign Out", {:controller => "sessions", :action => "sign_out"}, {:method => :get, :form_class => "navbar-form navbar-right", :class => "btn btn-success" }%>
+            <li><%= link_to "Profile", user_path(current_user) %></li>
+            <li><%= button_to "Sign Out", {:controller => "sessions", :action => "sign_out"}, {:method => :get, :form_class => "navbar-form navbar-right", :class => "btn btn-success" }%> </li>
             <% end %>
-            </li>
           </ul>
         </div><!--/.navbar-collapse -->
       </div>
