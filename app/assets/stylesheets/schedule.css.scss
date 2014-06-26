@@ -1060,5 +1060,9 @@ body {
       text-align: center;
       cursor: pointer;
     }
+
+    .no-pointer {
+      cursor: default;
+    }
   }
 }
