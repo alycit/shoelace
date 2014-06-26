@@ -10,6 +10,21 @@ class AppointmentsController < ApplicationController
     redirect_to "/schedule"
   end
 
+  def destroy
+    Appointment.find(params[:id]).destroy
+    redirect_to "/schedule"
+  end
+
+  def update
+    appointment = Appointment.find(params[:id])
+    appointment.mentee_id = nil if params[:type] == "cancel"
+    appointment.mentee_id = session[:user_id] if params[:type] == "book"
+
+    appointment.save
+
+    redirect_to "/schedule"
+  end
+
   private
   def appt_params
     params.require(:appointment).permit(:start_time, :mentor_id, :mentee_id)
