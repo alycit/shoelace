@@ -54,16 +54,27 @@ var ready = function(){
     placement: "bottom"
   });
 
-  $("#test").on("click", function(event){
+  $("#edit_description").on("click", function(event){
     event.preventDefault();
+    $("p#description").hide();
+    $("#edit_description").hide();
+    $("textarea[name='description']").val($("p#description").text());
+    $("#edit_form").removeClass("hidden");
+  });
+
+  $("#edit_form").on("submit", function(event){
+    event.preventDefault();
+    var description = $("textarea[name='description']").val();
 
     $.ajax({
-      url: "/users/61",
-      type: "GET",
-      dataType: "JSON",
-      data: {myParam: "hey there" },
+      url: $(this).attr("action"),
+      type: "POST",
+      data: {description: description, _method: "PUT"},
       success: function(response) {
-        console.log(response);
+        $("p#description").text(response.description);
+        $("#edit_form").addClass("hidden");
+        $("p#description").show();
+        $("#edit_description").show();
       }
     });
   });

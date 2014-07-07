@@ -1,8 +1,19 @@
 <div class="container" id="profile">
   <section id="user_info">
-  <%= image_tag(@user.gravatar) %>
-  <h1><%= @user.name %></h1>
-  <p><%= @user.email %><p>
+    <%= image_tag(@user.gravatar) %>
+    <h1><%= @user.name %></h1>
+    <p><%= @user.email %><p>
+    <p id="description"><%= @user.description %></p>
+    <% if @user == current_user %>
+    <p><%= link_to "Edit Description", "#", id: "edit_description" %>
+      <form id="edit_form" action="/users/<%=current_user.id%>" class="hidden" role="form">
+        <div class="form-group">
+          <textarea class="form-control" placeholder="tell us what you like to mentor on" name="description"></textarea>
+        </div>
+        <button type="submit" class="btn btn-default">Save</button>
+      </form>
+    </p>
+    <% end %>
   </section>
   <section id="availability_info">
     <article>

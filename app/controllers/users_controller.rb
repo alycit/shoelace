@@ -7,4 +7,12 @@ class UsersController < ApplicationController
     @open_availabilities = @user.open_appointments_for_saturday
     @booked_mentoring = @user.sessions_for_saturday
   end
+
+  def update
+    current_user.description = params[:description]
+    current_user.save
+    respond_to do |format|
+      format.json { render :json => current_user }
+    end
+  end
 end
