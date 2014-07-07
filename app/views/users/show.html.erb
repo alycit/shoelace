@@ -1,8 +1,15 @@
 <div class="container" id="profile">
   <section id="user_info">
-  <%= image_tag(@user.gravatar) %>
-  <h1><%= @user.name %></h1>
-  <p><%= @user.email %><p>
+    <%= image_tag(@user.gravatar) %>
+    <h1><%= @user.name %></h1>
+    <p><%= @user.email %><p>
+    <% if @user.description %>
+    <p><%= @user.description %></p>
+    <% end %>
+    <% if @user == current_user %>
+    <p><%= link_to "Edit Description", "#", id: "edit_description" %></p>
+    <% end %>
+
   </section>
   <section id="availability_info">
     <article>
