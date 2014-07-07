@@ -10,7 +10,6 @@ Shoelace::Application.routes.draw do
   get 'auth/:provider/callback', :to => 'sessions#auth'
   get '/schedule', :to => 'schedules#index'
 
-
   resources :users, only: [:show, :update]
   resources :appointments, only: [:new, :create, :update, :destroy]
 
