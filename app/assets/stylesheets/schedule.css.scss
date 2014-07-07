@@ -1033,6 +1033,15 @@ h1 span {
       background: $btn-default-bg;
       color: white;
     }
+
+    .profile {
+      cursor: pointer;
+    }
+
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
   }
 
   .schedule_row {
@@ -1138,3 +1147,26 @@ h1 span {
     }
   }
 }
+
+#profile section {
+  float: left;
+}
+
+#user_info {
+  margin-right: 50px;
+}
+
+#user_info img {
+  border-radius: 15px;
+}
+
+#availability_info ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+
+
+
+
+
