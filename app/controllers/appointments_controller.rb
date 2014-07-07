@@ -13,7 +13,11 @@ class AppointmentsController < ApplicationController
 
   def destroy
     Appointment.find(params[:id]).destroy
-    redirect_to "/schedule"
+    if params[:from]
+      redirect_to user_path(current_user)
+    else
+      redirect_to "/schedule"
+    end
   end
 
   def update
@@ -23,7 +27,11 @@ class AppointmentsController < ApplicationController
 
     appointment.save
 
-    redirect_to "/schedule"
+    if params[:from]
+      redirect_to user_path(current_user)
+    else
+      redirect_to "/schedule"
+    end
   end
 
   private

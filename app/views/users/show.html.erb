@@ -22,7 +22,7 @@
       <p class="text-info">This user has booked the following availabilities to receive mentoring.</p>
       <ul>
         <% @booked_mentoring.each do |booked| %>
-        <li><%= link_to booked.mentor.name, user_path(booked.mentor) %> is mentoring this user on <%= appointment_format(booked.start_time) %> <% if @user == current_user %><%= link_to 'Cancel', appointment_path(booked, type: "cancel"), :method => :put, :confirm => "Are you sure?" %><% end %></li>
+        <li><%= link_to booked.mentor.name, user_path(booked.mentor) %> is mentoring this user on <%= appointment_format(booked.start_time) %> <% if @user == current_user %><%= link_to 'Cancel', appointment_path(booked, type: "cancel", from:"profile"), :method => :put, :confirm => "Are you sure?" %><% end %></li>
         <% end %>
       </ul>
       <% else %>
@@ -35,7 +35,7 @@
       <p class="text-info">Availabilities offered by this user which have been filled</p>
       <ul>
         <% @filled_availabilities.each do |filled| %>
-        <li><%= appointment_format(filled.start_time) %> is filled by <%= link_to filled.mentee.name, user_path(filled.mentee) %> <% if @user == current_user %><%= link_to 'Remove', appointment_path(filled), :method => :delete, :confirm => "Are you sure?" %><% end %></li>
+        <li><%= appointment_format(filled.start_time) %> is filled by <%= link_to filled.mentee.name, user_path(filled.mentee) %> <% if @user == current_user %><%= link_to 'Remove', appointment_path(filled, from: "profile"), :method => :delete, :confirm => "Are you sure?" %><% end %></li>
         <% end %>
       </ul>
       <% else %>
@@ -48,7 +48,7 @@
       <p class="text-info">Availabilities offered by this user which have not been filled</p>
       <ul>
         <% @open_availabilities.each do |open| %>
-        <li><%= appointment_format(open.start_time) %> <% if @user == current_user %><%= link_to 'Remove', appointment_path(open), :method => :delete, :confirm => "Are you sure?" %><% end %></li>
+        <li><%= appointment_format(open.start_time) %> <% if @user == current_user %><%= link_to 'Remove', appointment_path(open, from: "profile"), :method => :delete, :confirm => "Are you sure?" %><% end %></li>
         <% end %>
       </ul>
       <% else %>
