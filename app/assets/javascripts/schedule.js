@@ -53,6 +53,20 @@ var ready = function(){
     title: "Legend",
     placement: "bottom"
   });
+
+  $("#test").on("click", function(event){
+    event.preventDefault();
+
+    $.ajax({
+      url: "/users/61",
+      type: "GET",
+      dataType: "JSON",
+      data: {myParam: "hey there" },
+      success: function(response) {
+        console.log(response);
+      }
+    });
+  });
 }
 
 $(document).ready(ready);

@@ -1,0 +1,43 @@
+<div class="container" id="profile">
+
+  <section id="user_info">
+  <%= image_tag(@user.gravatar) %>
+  <h1><%= @user.name %></h1>
+  <p><%= @user.email %><p>
+  </section>
+  <section id="availability_info">
+    <% if @booked_mentoring.any? %>
+    <article>
+      <h2>Booked Mentoring</h2>
+      <p class="text-info">This user has booked the following availabilities to receive mentoring.</p>
+      <ul>
+      <% @booked_mentoring.each do |booked| %>
+        <li><%= link_to booked.mentor.name, user_path(booked.mentor) %> is mentoring this user on <%= appointment_format(booked.start_time) %></li>
+      <% end %>
+      </ul>
+    </article>
+    <% end %>
+    <% if @filled_availabilities.any? %>
+    <article>
+      <h2>Filled Availabilities</h2>
+      <p class="text-info">Availabilities offered by this user which have been filled</p>
+      <ul>
+      <% @filled_availabilities.each do |filled| %>
+        <li><%= appointment_format(filled.start_time) %> is filled by <%= link_to filled.mentee.name, user_path(filled.mentee) %></li>
+      <% end %>
+      </ul>
+    </article>
+    <% end %>
+    <% if @open_availabilities.any? %>
+    <article>
+      <h2>Open Availabilities</h2>
+      <p class="text-info">Availabilities offered by this user which have not been filled</p>
+      <ul>
+      <% @open_availabilities.each do |open| %>
+        <li><%= appointment_format(open.start_time) %></li>
+      <% end %>
+      </ul>
+    </article>
+    <% end %>
+  </section>
+</div>

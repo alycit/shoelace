@@ -18,4 +18,16 @@ class User < ActiveRecord::Base
   def self.get_mentors_with_saturday_appointments
     User.joins(:appointments).where(appointments: {start_time: Appointment.coming_saturday.beginning_of_day..Appointment.coming_saturday.end_of_day }).uniq.order(:name)
   end
+
+  def sessions_for_saturday
+    sessions.where(start_time: Appointment.coming_saturday.beginning_of_day..Appointment.coming_saturday.end_of_day)
+  end
+
+  def open_appointments_for_saturday
+    appointments.where(mentee_id: nil, start_time: Appointment.coming_saturday.beginning_of_day..Appointment.coming_saturday.end_of_day)
+  end
+
+  def filled_appointments_for_saturday
+    appointments.joins(:mentee).where(start_time: Appointment.coming_saturday.beginning_of_day..Appointment.coming_saturday.end_of_day)
+  end
 end
