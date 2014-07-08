@@ -1072,6 +1072,12 @@ h1 span {
       text-align: center;
     }
 
+    .event {
+      background: $brand-warning;
+      color: #333;
+      font-size: 2em;
+      text-align: center;
+    }
     a {
       color: #333;
     }
@@ -1133,6 +1139,13 @@ h1 span {
 
     .available {
       background: $brand-success;
+      color: #333;
+      text-align: center;
+      font-size: .3em;
+    }
+
+    .event {
+      background: $brand-warning;
       color: #333;
       text-align: center;
       font-size: .3em;

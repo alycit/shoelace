@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Schedule for <%= @saturday.strftime("%m/%d/%Y")  %><span id="help_popover"><%= icon('question-circle')%></span></h1>
+  <h1>Pairing board for <%= @saturday.strftime("%m/%d/%Y")  %><span id="help_popover"><%= icon('question-circle')%></span></h1>
   <div class="schedule_body">
     <% @schedule.each do |row| %>
 
@@ -20,7 +20,13 @@
             <% if slot.is_a? Time %>
               <div class="slot new_mentor_availibility"><%= datetime_format(slot) %></div>
             <% elsif slot.is_a? Appointment %>
-              <% if slot.mentee_id %>
+              <% if slot.description %>
+                <div class="slot event">
+
+                  <% if slot.mentor_id != session[:user_id] %>
+                  <a href="#" class="showEvent" data-description="<%= slot.description %>"><%= icon('users') %></a>
+                  <% end %>
+              <% elsif slot.mentee_id %>
                 <div class="slot filled">
                   <% if slot.mentee_id == session[:user_id] %>
                     <a href="#" class="cancelAppointment" data-id="<%= slot.id %>"><%= icon('calendar-o') %></a>
@@ -55,9 +61,20 @@
       </div>
       <div class="modal-body">
         <p>Click 'Create' to make an availability for you to mentor someone at <span id="start_time"></span> on <%= @saturday.strftime("%m/%d/%Y")%></p>
+        <form id="event_form" role="form">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" name="event_check"> Is this a workshop?
+            </label>
+          </div>
+          <div class="form-group hidden" id="description_group">
+            <label class="control-label" for="event_description">Description</label>
+            <textarea class="form-control" placeholder="workshop description" name="event_description"></textarea>
+          </div>
+        </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" id="close_create_appt" class="btn btn-default" data-dismiss="modal">Close</button>
         <button id="create_appt" type="button" class="btn btn-primary">Create</button>
       </div>
     </div>
@@ -105,6 +122,25 @@
 </div>
 <!-- end Modal -->
 
+<!-- Modal -->
+<div class="modal fade" id="showEvent" tabindex="-1" role="dialog" aria-labelledby="show_event_label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="show_event_label">Event</h4>
+      </div>
+      <div class="modal-body">
+        <p id="event_description"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end Modal -->
+
 <form id="delete_appt_form" class="hidden" method="post">
   <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
   <input type="hidden" name="_method" value="delete">
@@ -119,6 +155,8 @@
 <form id="create_appt_form" class="hidden" method="post" action="/appointments">
   <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
   <input type="text" name="start_time">
+  <input type="text" name="appt_type">
+  <input type="text" name="event_desc">
 </form>
 
 <div id="help_content" class="hidden">
@@ -146,6 +184,14 @@
     <div class="help_row">
       <div class="slot available"><%= icon('times') %></div>
       <div class="slot description">This is slot where you have made yourself available for pairing but has not been filled.  Click to cancel the availability.</div>
+    </div>
+    <div class="help_row">
+      <div class="slot event"><%= icon('users') %></div>
+      <div class="slot description">This is slot for a workshop event. Click to view description.</div>
+    </div>
+    <div class="help_row">
+      <div class="slot event"><%= icon('times') %></div>
+      <div class="slot description">This is slot for a workshop event which you have created. Click to delete.</div>
     </div>
 <!--  Build this in later when profile pages are setup
     <div class="help_header">

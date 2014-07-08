@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     @filled_availabilities = @user.filled_appointments_for_saturday
     @open_availabilities = @user.open_appointments_for_saturday
     @booked_mentoring = @user.sessions_for_saturday
+    @workshops = @user.workshops_for_saturday
   end
 
   def update

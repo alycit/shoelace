@@ -6,8 +6,10 @@ class AppointmentsController < ApplicationController
   end
 
   def create
+    logger.info("PARAMS ---------------------------")
+    p params
     user = User.find(session[:user_id])
-    user.appointments << Appointment.create(start_time: extract_start_time(params[:start_time]))
+    user.appointments << Appointment.create(start_time: extract_start_time(params[:start_time]), appt_type: params[:appt_type], description: params[:event_desc])
     redirect_to "/schedule"
   end
 
