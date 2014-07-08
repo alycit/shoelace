@@ -4,9 +4,31 @@ var ready = function(){
     $('#new_appointment').modal('show');
   });
 
+  $("input[name='event_check']").on("change", function(event){
+    var descriptionGroup = $("#description_group");
+    if($(this).prop("checked")) {
+      descriptionGroup.removeClass("hidden");
+    } else {
+      $("textarea[name='event_description']").val("");
+      descriptionGroup.addClass("hidden");
+    }
+  });
+
   $("#create_appt").on("click", function(){
     $("input[name='start_time']").val($("#start_time").text());
-    $("#create_appt_form").submit();
+    var type = $("input[name='event_check']").prop("checked") ? "event" : "mentor";
+
+    if(type == "event" && $("textarea[name='event_description']").val() == "") {
+      $("#description_group").addClass("has-warning");
+    } else {
+      $("input[name='appt_type']").val(type);
+      $("input[name='event_desc']").val($("textarea[name='event_description']").val());
+      $("#create_appt_form").submit();
+    }
+  });
+
+  $("#close_create_appt").on("click", function(){
+    $("#description_group").removeClass("has-warning");
   });
 
   $(".cancelAppointment").on("click", function(event){
@@ -43,6 +65,12 @@ var ready = function(){
   $("#delete_avail").on("click", function(){
     $("#delete_appt_form").attr("action", "/appointments/" +  $(this).attr("data-id"))
     $("#delete_appt_form").submit();
+  });
+
+  $(".showEvent").on("click", function(event) {
+    event.preventDefault();
+    $("#event_description").text($(this).attr("data-description"));
+    $('#showEvent').modal('show');
   });
 
   $("#help_popover").popover({
