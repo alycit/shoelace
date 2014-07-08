@@ -106,6 +106,20 @@ var ready = function(){
       }
     });
   });
+
+  var table = $('#schedule').DataTable({
+      searching: false,
+      order: [],
+      scrollY:        "300px",
+      scrollX:        true,
+      scrollCollapse: true,
+      paging:         false,
+      language: {
+        info: ""
+      }
+  });
+
+  new $.fn.dataTable.FixedColumns(table);
 }
 
 $(document).ready(ready);

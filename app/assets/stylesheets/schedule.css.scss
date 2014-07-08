@@ -1006,28 +1006,25 @@ h1 span {
   margin-left: 15px;
 }
 
+#schedule_wrapper {
+  margin-top: 40px;
+}
+
 .schedule_body {
 
   background-color: #ccc;
-  display: table;
-  border-collapse: separate;
-  border-spacing: 10px;
-  border-radius: 10px;
-  margin-top: 20px;
+  // border-collapse: separate;
+  // border-spacing: 10px;
+  // border-radius: 10px;
 
   .slot {
     text-align: center;
     vertical-align: middle;
-    display: table-cell;
-    height: 50px;
-    border-radius: 5px;
-    padding:5px;
-    width: 80px;
+    // border-radius: 5px;
+    // padding:5px;
   }
 
   .schedule_header {
-
-    display: table-row;
 
     .slot {
       background: $btn-default-bg;
@@ -1045,8 +1042,6 @@ h1 span {
   }
 
   .schedule_row {
-
-    display: table-row;
 
     .slot {
       background-color: white;
@@ -1151,6 +1146,13 @@ h1 span {
       font-size: .3em;
     }
 
+    .profile {
+      background: $btn-default-bg;
+      color: white;
+      text-align: center;
+      font-size: .2em;
+    }
+
     .description {
       font-size: 14px;
       width:400px;
@@ -1179,7 +1181,8 @@ h1 span {
 }
 
 
+//
 
 
 
-
+//
