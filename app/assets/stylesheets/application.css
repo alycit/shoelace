@@ -11,5 +11,7 @@
  *= require_self
  *= require jquery.ui.all
  *= require font-awesome
- *= require_tree .
+ *= require jquery.dataTables
+ *= require dataTables.fixedColumns
+ *= require schedule
  */

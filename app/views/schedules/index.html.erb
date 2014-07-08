@@ -1,38 +1,39 @@
 <div class="container">
   <h1>Pairing board for <%= @saturday.strftime("%m/%d/%Y")  %><span id="help_popover"><%= icon('question-circle')%></span></h1>
-  <div class="schedule_body">
+  <table id="schedule" class="schedule_body">
     <% @schedule.each do |row| %>
 
       <% if row.all? { |slot| slot.is_a?(String) || slot.is_a?(User) } %>
-        <div class="schedule_header">
+        <thead class="schedule_header">
+          <tr>
           <% row.each do |slot| %>
             <% if slot.is_a? String %>
-            <div class="slot"><%= slot %></div>
+            <th class="slot"><%= slot %></th>
             <% else %>
-            <div class="slot profile"><%= link_to slot.name, user_path(slot) %></div>
+            <th class="slot profile"><%= link_to slot.name, user_path(slot) %></th>
             <% end %>
-            <!-- gonna need user objects in there to fix this to show profiles -->
           <% end %>
-        </div>
+          </tr>
+        </thead>
+        <tbody>
       <% else %>
-        <div class="schedule_row">
+        <tr class="schedule_row">
           <% row.each do |slot| %>
             <% if slot.is_a? Time %>
-              <div class="slot new_mentor_availibility"><%= datetime_format(slot) %></div>
+              <td class="slot new_mentor_availibility"><%= datetime_format(slot) %></td>
             <% elsif slot.is_a? Appointment %>
               <% if slot.description %>
-                <div class="slot event">
-
+                <td class="slot event">
                   <% if slot.mentor_id != session[:user_id] %>
                   <a href="#" class="showEvent" data-description="<%= slot.description %>"><%= icon('users') %></a>
                   <% end %>
               <% elsif slot.mentee_id %>
-                <div class="slot filled">
+                <td class="slot filled">
                   <% if slot.mentee_id == session[:user_id] %>
                     <a href="#" class="cancelAppointment" data-id="<%= slot.id %>"><%= icon('calendar-o') %></a>
                   <% end %>
               <% else %>
-                <div class="slot available">
+                <td class="slot available">
                 <% if slot.mentor_id != session[:user_id] %>
                   <a href="#" class="bookAppointment" data-id="<%= slot.id %>"><%= icon('calendar') %></a>
                 <% end %>
@@ -40,15 +41,16 @@
               <% if slot.mentor_id == session[:user_id] %>
                 <a href="#" class="deleteAvailability" data-id="<%= slot.id %>"><%= icon('times') %></a>
               <% end %>
-                </div>
+                </td>
             <% else %>
-              <div class="slot"><%= slot %></div>
+              <td class="slot"><%= slot %></td>
             <% end %>
           <% end %>
-        </div><!-- end schedule row -->
+        </tr><!-- end schedule row -->
       <% end %><!-- end row if else -->
     <% end %><!-- end schdule each-->
-  </div><!-- end schedule body -->
+    </tbody><!-- end table body-->
+  </table><!-- end schedule body -->
 </div><!-- end container -->
 
 <!-- Modal -->
@@ -128,7 +130,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="show_event_label">Event</h4>
+        <h4 class="modal-title" id="show_event_label">Workshop</h4>
       </div>
       <div class="modal-body">
         <p id="event_description"></p>
@@ -162,6 +164,10 @@
 <div id="help_content" class="hidden">
   <div id="help" class="help_body">
     <div class="help_row">
+      <div class="slot profile">Name</div>
+      <div class="slot description">This a user who is offering pairing.  Click to see their profile page.</div>
+    </div>
+    <div class="help_row">
       <div class="slot new_mentor_availibility">9:00 AM</div>
       <div class="slot description">Click this slot to create an availability to mentor someone for that timeslot.</div>
     </div>
@@ -193,10 +199,5 @@
       <div class="slot event"><%= icon('times') %></div>
       <div class="slot description">This is slot for a workshop event which you have created. Click to delete.</div>
     </div>
-<!--  Build this in later when profile pages are setup
-    <div class="help_header">
-      <div class="slot"></div>
-    </div>
--->
   </div>
 </div>
