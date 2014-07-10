@@ -114,6 +114,7 @@ var ready = function(){
       scrollX:        true,
       scrollCollapse: true,
       paging:         false,
+      bSort: false,
       language: {
         info: ""
       }

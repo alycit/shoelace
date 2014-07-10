@@ -1,6 +1,6 @@
 <div class="container">
   <h1>Pairing board for <%= @saturday.strftime("%m/%d/%Y")  %><span id="help_popover"><%= icon('question-circle')%></span></h1>
-  <table id="schedule" class="schedule_body">
+  <table id="schedule" class="schedule_body cell-border">
     <% @schedule.each do |row| %>
 
       <% if row.all? { |slot| slot.is_a?(String) || slot.is_a?(User) } %>

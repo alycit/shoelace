@@ -1013,15 +1013,11 @@ h1 span {
 .schedule_body {
 
   background-color: #ccc;
-  // border-collapse: separate;
-  // border-spacing: 10px;
-  // border-radius: 10px;
 
   .slot {
     text-align: center;
     vertical-align: middle;
-    // border-radius: 5px;
-    // padding:5px;
+    height: 50px;
   }
 
   .schedule_header {
@@ -1029,10 +1025,6 @@ h1 span {
     .slot {
       background: $btn-default-bg;
       color: white;
-    }
-
-    .profile {
-      cursor: pointer;
     }
 
     a {
@@ -1180,9 +1172,23 @@ h1 span {
   padding-left: 0;
 }
 
+table.dataTable.cell-border tbody th, table.dataTable.cell-border tbody td {
+  border-top: 1px solid #999;
+  border-right: 1px solid #999;
+}
 
-//
+table.dataTable.cell-border tbody tr th:first-child,
+table.dataTable.cell-border tbody tr td:first-child {
+  border-left: 1px solid black;
+}
 
 
+table.dataTable.cell-border thead th, table.dataTable.cell-border thead td {
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+}
 
-//
+table.dataTable.cell-border thead tr th:first-child,
+table.dataTable.cell-border thead tr td:first-child {
+  border-left: 1px solid black;
+}
