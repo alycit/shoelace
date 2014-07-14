@@ -57,7 +57,7 @@ class AppointmentsController < ApplicationController
     am_pm = suffix[1]
     hour = hour + 12 if am_pm == "PM"
     saturday = Appointment.coming_saturday
-    Time.new(saturday.year, saturday.month, saturday.day, hour, minute)
+    Time.new(saturday.year, saturday.month, saturday.day, hour, minute, 0, "-05:00")
   end
 
 end
