@@ -13,7 +13,11 @@ class AppointmentsController < ApplicationController
       description = nil
     end
 
-    user.appointments << Appointment.create(start_time: extract_start_time(params[:start_time]), appt_type: params[:appt_type], description: description)
+    start_time = extract_start_time(params[:start_time])
+
+    logger.info "Start time of appt: #{start_time}"
+
+    user.appointments << Appointment.create(start_time: start_time, appt_type: params[:appt_type], description: description)
     redirect_to "/schedule"
   end
 
